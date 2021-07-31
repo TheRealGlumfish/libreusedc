@@ -18,13 +18,13 @@
 #endif
 
 // Returns the number of digits in a long
-int get_length(long input_number)
+int get_length(long number)
 {
     int length = 0;
-    input_number = labs(input_number);
-    while (input_number != 0)
+    number = labs(number);
+    while (number != 0)
     {
-        input_number = input_number / 10;
+        number = number / 10;
         length++;
     }
     return length;
@@ -75,6 +75,7 @@ long array_to_long(const int array[], int length)
     return output_number;
 }
 
+// Sums all the elements in an array of integers
 long array_sum(const int array[], int length)
 {
     long sum = 0;
@@ -115,7 +116,7 @@ int mpz_get_digit(const mpz_t input_number, unsigned long long digit_requested)
     unsigned long long digits_cleared = 0;
     unsigned long long length = mpz_get_length(input_number);
     mpz_abs(number, input_number);
-    // assert(digit_requested <= length && digit_requested > 0); TODO: Fix assert or remove
+    // assert(digit_requested <= length && digit_requested > 0);
     while (digits_cleared < (length - digit_requested)) //removes digits from the back of a number
     {
         mpz_tdiv_r_ui(tmp, number, 10);
@@ -133,7 +134,7 @@ void array_to_mpz(const int array[], unsigned long long length, mpz_t output_num
 {
     mpz_t tmp;
     mpz_t place_value;
-    mpz_t raised_int; // TODO: Rename
+    mpz_t raised_int;
     mpz_init(tmp);
     mpz_init(place_value);
     mpz_init(raised_int);

@@ -88,15 +88,17 @@ analyze: clean compiledb
 # Formats using clang-format
 format:
 	clang-format $(SRC_DIR)* $(CLANG_FORMAT_FLAGS) -i
+	clang-format $(INCLUDE_DIR)* $(CLANG_FORMAT_FLAGS) -i
 
 # Format check using clang-format
 format-check:
 	clang-format $(CLANG_FORMAT_FLAGS) --Werror --dry-run $(SRC_DIR)*
+	clang-format $(CLANG_FORMAT_FLAGS) --Werror --dry-run $(INCLUDE_DIR)*
 
 # Check if there are any "TODO" comments
 todo:
-	grep TODO: $(SRC_DIR)* --color=auto -n
+	grep -r --color=auto -n TODO: $(SRC_DIR) $(INCLUDE_DIR)
 
 # Check if there are any "NOTE" comments
 note:
-	grep NOTE: $(SRC_DIR)* --color=auto -n
+	grep -r --color=auto -n NOTE: $(SRC_DIR) $(INCLUDE_DIR)
