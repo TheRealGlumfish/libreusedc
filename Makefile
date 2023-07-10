@@ -1,4 +1,4 @@
-# Copyright (c) 2021, Dimitris Alexopoulos All rights reserved.
+# Copyright (c) 2021, Dimitrios Alexopoulos All rights reserved.
 
 # C compiler that will be used
 CC = clang
@@ -67,14 +67,14 @@ test:
  #TODO: Implement unit tests
 
 # Generates the compile_commands.json using the bear tool
-compiledb: compile_commands.json 
+compiledb: compile_commands.json
 
 compile_commands.json: Makefile
 	make clean
 	bear -- make debug
 
 # Runs clang static analyzer
-analyze: clean compiledb 
+analyze: clean compiledb
 	scan-build make debug
 
 # Installs in bin folder
